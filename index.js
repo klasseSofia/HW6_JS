@@ -13,20 +13,38 @@ function currentTime() {
     if(s<=9) {
         s = '0' + s;
     }
-
-    time = h + ":" + m + ":" +s;
-    document.getElementById('watch').innerHTML=time;
-    setTimeout('currentTime()', 1000);
+   time = h + ":" + m;
+    document.getElementById('hoursMin').innerHTML=time;
+    document.getElementById('seconds').innerHTML = ':' + s;
+    setInterval('currentTime()', 1000);
 }
 
-function sum(x) {
+currentTime();
 
+setInterval(function () {
+    currentTime();
+}, 1000);
+
+function toggleTime() {
+    var obj = document.getElementById('seconds');
+
+    if (obj.style.display != "inline") {
+        obj.style.display = "inline";
+    } else {
+        obj.style.display = "none";
+    }
+}
+
+var click = document.getElementById('watch');
+click.addEventListener('click', toggleTime);
+
+function sum(x) {
     return function(y) {
        return x+y;
     };
 }
 var sum1 = sum(1);
-console.log(sum1(5));
+// console.log(sum1(5));
 
 
 
